@@ -6,3 +6,4 @@ edition = "2021"
 readme = "README.md"
 
 [dependencies]
+syn = "2.0.18"
