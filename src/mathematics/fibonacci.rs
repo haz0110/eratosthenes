@@ -1,13 +1,13 @@
 use crate::mathematics::common::clean_array;
 
 pub fn fibonacci_series(until: usize) -> Vec<usize> {
-    let mut array: Vec<usize> = vec![1; until+1];
+    let mut array: Vec<usize> = vec![1; until + 1];
     array[1] = 2;
 
     // first two terms and skipped, starts from the third term.
     for index in 2..until {
-        if array[index-1] >= until {
-            array[index-1] = 1;
+        if array[index - 1] >= until {
+            array[index - 1] = 1;
             break;
         }
 
@@ -18,7 +18,6 @@ pub fn fibonacci_series(until: usize) -> Vec<usize> {
 
     resulting_array
 }
-
 
 #[cfg(test)]
 mod tests {

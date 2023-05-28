@@ -1,11 +1,9 @@
 use primes::*;
 
 pub fn biggest_prime_factor(number: usize) -> usize {
-
     let factors = primes::factors_uniq(number as u64);
 
     factors[factors.len() - 1] as usize
-    
 }
 
 pub fn nth_prime(n: usize) -> usize {
@@ -38,5 +36,4 @@ mod tests {
         assert_eq!(nth_prime(3), 5);
         assert_eq!(nth_prime(10001), 104743);
     }
-
 }

@@ -1,13 +1,11 @@
 pub fn palindromes_2_digits() -> Vec<usize> {
     let mut storage: Vec<usize> = Vec::with_capacity(1000);
-    for number in (10*10)..(99*99) {
-
+    for number in (10 * 10)..(99 * 99) {
         let number_as_string: String = format!("{:?}", number);
         let reversed_number_as_string = number_as_string.chars().rev().collect::<String>();
         let reversed_number: usize = reversed_number_as_string.parse().unwrap();
 
         if number == reversed_number {
-
             'inLoop: for first_multiplier in 10..=99 {
                 for second_multiplier in 10..=99 {
                     if second_multiplier * first_multiplier == number {
@@ -18,7 +16,6 @@ pub fn palindromes_2_digits() -> Vec<usize> {
                 }
             }
         }
-        
     }
 
     storage
@@ -26,8 +23,7 @@ pub fn palindromes_2_digits() -> Vec<usize> {
 
 pub fn palindromes_3_digits() -> Vec<usize> {
     let mut storage: Vec<usize> = Vec::with_capacity(1000);
-    for number in (100*100)..(999*999) {
-
+    for number in (100 * 100)..(999 * 999) {
         let number_as_string: String = format!("{:?}", number);
         let reversed_number_as_string = number_as_string.chars().rev().collect::<String>();
         let reversed_number: usize = reversed_number_as_string.parse().unwrap();
@@ -35,14 +31,13 @@ pub fn palindromes_3_digits() -> Vec<usize> {
         if number == reversed_number {
             'inLoop: for first_multiplier in 100..=999 {
                 for second_multiplier in 100..=999 {
-                        if second_multiplier * first_multiplier == number {
-                            storage.push(number);
-                            break 'inLoop;
-                        }
+                    if second_multiplier * first_multiplier == number {
+                        storage.push(number);
+                        break 'inLoop;
+                    }
                 }
             }
         }
-        
     }
 
     storage
@@ -63,5 +58,4 @@ mod tests {
         assert_eq!(palindromes_3_digits()[0], 10_201);
         assert_eq!(palindromes_3_digits()[1], 11_211);
     }
-
 }

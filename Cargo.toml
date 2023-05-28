@@ -1,7 +1,6 @@
 [package]
 name = "hazs_tools"
 version = "0.1.0"
-author = "Rüstem Hazar Çelik"
 edition = "2021"
 readme = "README.md"
 
