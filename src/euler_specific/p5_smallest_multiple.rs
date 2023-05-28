@@ -27,7 +27,7 @@ mod tests {
 
     #[test]
     fn smallest_multiple_test() {
-        assert!(smallest_multiple(10, 2530) == 2520);
-        assert!(smallest_multiple(20, 232792561) == 232792560);
+        assert_eq!(smallest_multiple(10, 2530), 2520);
+        assert_eq!(smallest_multiple(20, 232792561), 232792560);
     }
 }

@@ -60,8 +60,8 @@ mod tests {
 
     #[test]
     fn palindromes_3_digits_test() {
-        assert!(palindromes_3_digits()[0] == 10_201);
-        assert!(palindromes_3_digits()[1] == 11_211);
+        assert_eq!(palindromes_3_digits()[0], 10_201);
+        assert_eq!(palindromes_3_digits()[1], 11_211);
     }
 
 }

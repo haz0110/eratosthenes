@@ -54,15 +54,15 @@ mod tests {
         let mut array_x: Vec<usize> = vec![3, 6, 9, 12, 15, 18];
         let mut array_y: Vec<usize> = vec![5, 10, 15];
         let result: Vec<usize> = merge_two_arrays_arrange_and_clean(&mut array_x, &mut array_y);
-        assert!(
-            result == vec![3, 5, 6, 9, 10, 12, 15, 18]
+        assert_eq!(
+            result, vec![3, 5, 6, 9, 10, 12, 15, 18]
         );
     }
 
     #[test]
     fn euler1_number_of_factors_test() {
-        assert!(
-            number_of_factors_one_integer(3, 20) == 6
+        assert_eq!(
+            number_of_factors_one_integer(3, 20), 6
         );
     }
 
@@ -72,21 +72,21 @@ mod tests {
         let mut array: Vec<usize> = vec![1, 1, 2, 8, 5, 5, 13, 3];
         let correct_array: Vec<usize> = vec![1, 2, 3, 5, 8, 13];
 
-        assert!(
-            clean_array(&mut array) == correct_array);
+        assert_eq!(
+            clean_array(&mut array), correct_array);
     }
 
     #[test]
     fn sum_array_items_test() {
-        assert!(
-            sum_array_items(&mut vec![1, 3, 6, 11]) == 21
+        assert_eq!(
+            sum_array_items(&mut vec![1, 3, 6, 11]), 21
         )
     }
 
     #[test]
     fn sum_of_even_array_items_test() {
-        assert!(
-            sum_of_even_array_items(&mut vec![1, 3, 6, 11]) == 6
+        assert_eq!(
+            sum_of_even_array_items(&mut vec![1, 3, 6, 11]), 6
         )
     }
 

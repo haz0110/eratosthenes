@@ -25,6 +25,6 @@ mod tests {
     use super::*;
     #[test]
     fn fibonacci_series_test() {
-        assert!(fibonacci_series(30) == vec![1, 2, 3, 5, 8, 13, 21]);
+        assert_eq!(fibonacci_series(30), vec![1, 2, 3, 5, 8, 13, 21]);
     }
 }

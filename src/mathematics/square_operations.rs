@@ -22,12 +22,12 @@ mod tests {
 
     #[test]
     fn square_of_sum_of_numbers_test() {
-        assert!(square_of_sum_of_numbers(3) == 36);
-        assert!(square_of_sum_of_numbers(10) == 3025);
+        assert_eq!(square_of_sum_of_numbers(3), 36);
+        assert_eq!(square_of_sum_of_numbers(10), 3025);
     }
 
     #[test]
     fn sum_of_squares_test() {
-        assert!(sum_of_squares(10) == 385);
+        assert_eq!(sum_of_squares(10), 385);
     }
 }
