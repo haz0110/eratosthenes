@@ -8,20 +8,6 @@ pub fn biggest_prime_factor(number: usize) -> usize {
     
 }
 
-pub fn nth_prime_alt(n: usize) -> usize {
-    let cap: usize = 1_000_000;
-    let mut storage: Vec<usize> = Vec::new();
-    for number in 2..cap {
-        if primes::is_prime(number as u64){
-            storage.push(number);
-        }
-        if storage.len() == n {
-            break;
-        }
-    }
-    storage[storage.len() - 1]
-}
-
 pub fn nth_prime(n: usize) -> usize {
     let mut pset = primes::Sieve::new();
 
