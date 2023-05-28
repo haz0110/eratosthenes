@@ -30,14 +30,6 @@ pub fn number_of_factors_one_integer(factor: u32, until: u32) -> u32 {
     until / factor
 }
 
-pub fn sum_array_items(array: &mut [usize]) -> usize {
-    let mut sum = 0;
-    for (index, item) in array.to_owned().iter().enumerate() {
-        sum += array[index];
-    }
-    sum
-}
-
 pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
     let mut sum = 0;
     for (index, item) in array.to_owned().iter().enumerate() {
@@ -74,13 +66,8 @@ mod tests {
     }
 
     #[test]
-    fn sum_array_items_test() {
-        assert_eq!(sum_array_items(&mut vec![1, 3, 6, 11]), 21)
-    }
-
-    #[test]
     fn sum_of_even_array_items_test() {
-        assert_eq!(sum_of_even_array_items(&mut vec![1, 3, 6, 11]), 6)
+        assert_eq!(sum_of_even_array_items(&mut [1, 3, 6, 11]), 6)
     }
 
     #[test]
