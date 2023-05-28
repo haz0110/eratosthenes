@@ -1,27 +1,11 @@
-use std::cmp::max;
 use primes::*;
 
-pub fn biggest_prime_factor(until: usize) -> usize {
-    let mut result: usize = 0;
-    let mut candidate = (until as f32).sqrt().floor() as usize;
+pub fn biggest_prime_factor(number: usize) -> usize {
 
-    if candidate % 2 == 0 {
-        candidate += 1;
-    }
+    let factors = primes::factors_uniq(number as u64);
 
-    while candidate > 1 {    
-        if primes::is_prime(candidate as u64) && (until % candidate == 0){
-            if primes::is_prime((until / candidate) as u64) {
-                result = max(candidate, until / candidate);
-                break;
-            }
-            result = candidate;
-            break;
-        }
-        candidate -= 2;
-    }
-
-    result
+    factors[factors.len() - 1] as usize
+    
 }
 
 pub fn nth_prime_alt(n: usize) -> usize {
@@ -52,8 +36,6 @@ pub fn nth_prime(n: usize) -> usize {
     // for safety
     0
 }
-
-
 
 #[cfg(test)]
 mod tests {
