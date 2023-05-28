@@ -90,4 +90,11 @@ mod tests {
         )
     }
 
+    #[test]
+    fn merge_two_arrays_arrange_and_clean_test() {
+        assert_eq!(
+            merge_two_arrays_arrange_and_clean(&mut vec![1, 3, 5, 8], &mut vec![2, 3, 5, 7]), vec![1, 2, 3, 5, 7, 8]
+        )
+    }
+
 }
