@@ -14,10 +14,10 @@ pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
 }
 
 pub fn merge_two_arrays_arrange_and_clean(
-    array1: &mut Vec<usize>,
-    array2: &mut Vec<usize>,
+    array1: &mut [usize],
+    array2: &mut [usize]
 ) -> Vec<usize> {
-    let mut storage: Vec<usize> = Vec::with_capacity(array1.len() + array2.len());
+    let mut storage: Vec<usize> = Vec::new();
     storage.extend_from_slice(array1);
     storage.extend_from_slice(array2);
     storage.sort();
@@ -73,7 +73,7 @@ mod tests {
     #[test]
     fn merge_two_arrays_arrange_and_clean_test() {
         assert_eq!(
-            merge_two_arrays_arrange_and_clean(&mut vec![1, 3, 5, 8], &mut vec![2, 3, 5, 7]),
+            merge_two_arrays_arrange_and_clean(&mut [1, 3, 5, 8], &mut [2, 3, 5, 7]),
             vec![1, 2, 3, 5, 7, 8]
         )
     }
