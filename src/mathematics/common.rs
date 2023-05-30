@@ -1,6 +1,8 @@
 #![warn(dead_code)]
 #![allow(unused)]
 
+pub struct T;
+
 use std::cmp::max;
 
 pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
@@ -30,6 +32,19 @@ pub fn number_of_factors_one_integer(factor: u32, until: u32) -> u32 {
     until / factor
 }
 
+pub fn factors(number: usize, include_one: bool, include_self: bool) -> Vec<usize> {
+    let mut storage: Vec<usize> = Vec::new();
+    if include_one {storage.push(1)};
+
+    for divisor in 2..number {
+        if number % divisor == 0 { storage.push(divisor) }
+    }
+
+    if include_self {storage.push(number)};
+
+    storage
+}
+
 pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
     let mut sum = 0;
     for (index, item) in array.to_owned().iter().enumerate() {
@@ -50,6 +65,14 @@ mod tests {
         let mut array_y: Vec<usize> = vec![5, 10, 15];
         let result: Vec<usize> = merge_two_arrays_arrange_and_clean(&mut array_x, &mut array_y);
         assert_eq!(result, vec![3, 5, 6, 9, 10, 12, 15, 18]);
+    }
+
+    #[test]
+    fn factors_test() {
+        assert_eq!(factors(28, true, true), vec![1, 2, 4, 7, 14, 28]);
+        assert_eq!(factors(28, false, true), vec![2, 4, 7, 14, 28]);
+        assert_eq!(factors(28, true, false), vec![1, 2, 4, 7, 14]);
+        assert_eq!(factors(28, false, false), vec![2, 4, 7, 14]);
     }
 
     #[test]
