@@ -9,31 +9,35 @@ pub fn palindromes(digit: usize) -> Vec<usize> {
     let mut storage: Vec<usize> = Vec::with_capacity(1000);
 
     match digit {
-        2 => for number in (10 * 10)..(99 * 99) {
-            if is_palindrome(number) {
-                'inLoop: for first_multiplier in 10..=99 {
-                    for second_multiplier in 10..=99 {
-                        if second_multiplier * first_multiplier == number {
-                            storage.push(number);
-                            break 'inLoop;
+        2 => {
+            for number in (10 * 10)..(99 * 99) {
+                if is_palindrome(number) {
+                    'inLoop: for first_multiplier in 10..=99 {
+                        for second_multiplier in 10..=99 {
+                            if second_multiplier * first_multiplier == number {
+                                storage.push(number);
+                                break 'inLoop;
+                            }
                         }
                     }
                 }
             }
-        },
-        3 => for number in (100 * 100)..(999 * 999) {
-            if is_palindrome(number) {
-                'inLoop: for first_multiplier in 100..=999 {
-                    for second_multiplier in 100..=999 {
-                        if second_multiplier * first_multiplier == number {
-                            storage.push(number);
-                            break 'inLoop;
+        }
+        3 => {
+            for number in (100 * 100)..(999 * 999) {
+                if is_palindrome(number) {
+                    'inLoop: for first_multiplier in 100..=999 {
+                        for second_multiplier in 100..=999 {
+                            if second_multiplier * first_multiplier == number {
+                                storage.push(number);
+                                break 'inLoop;
+                            }
                         }
                     }
                 }
             }
-        },
-        _ => return vec![0]
+        }
+        _ => return vec![0],
     }
     storage
 }

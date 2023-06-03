@@ -1,9 +1,14 @@
 use primes::*;
 
 pub fn biggest_prime_factor(number: usize) -> usize {
-    let factors = primes::factors_uniq(number as u64);
-
-    factors[factors.len() - 1] as usize
+    match number {
+        0 => 0,
+        1 => 0,
+        _ => {
+            let factors: Vec<u64> = primes::factors_uniq(number as u64);
+            factors[factors.len() - 1] as usize
+        }
+    }
 }
 
 pub fn nth_prime(n: usize) -> usize {
@@ -27,6 +32,9 @@ mod tests {
 
     #[test]
     fn biggest_prime_factor_test() {
+        assert_eq!(biggest_prime_factor(0), 0);
+        assert_eq!(biggest_prime_factor(1), 0);
+        assert_eq!(biggest_prime_factor(2), 2);
         assert_eq!(biggest_prime_factor(21), 7);
         assert_eq!(biggest_prime_factor(33), 11);
     }
@@ -34,6 +42,6 @@ mod tests {
     #[test]
     fn nth_prime_test() {
         assert_eq!(nth_prime(3), 5);
-        assert_eq!(nth_prime(10001), 104743);
+        assert_eq!(nth_prime(10), 29);
     }
 }

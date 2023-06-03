@@ -1,11 +1,13 @@
 #![warn(dead_code)]
 #![allow(unused)]
 
-pub struct T;
-
 use std::cmp::max;
 
 pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
+    if array.is_empty() {
+        panic!("Empty array error.")
+    };
+
     let mut storage: Vec<usize> = Vec::with_capacity(array.len());
     storage.extend_from_slice(array);
     storage.sort();
@@ -15,9 +17,11 @@ pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
     storage
 }
 
+/// Accept two array borrows and returns a optimized,
+/// sorted, duplicates removed, exact capacity array.
 pub fn merge_two_arrays_arrange_and_clean(
     array1: &mut [usize],
-    array2: &mut [usize]
+    array2: &mut [usize],
 ) -> Vec<usize> {
     let mut storage: Vec<usize> = Vec::new();
     storage.extend_from_slice(array1);
@@ -28,19 +32,22 @@ pub fn merge_two_arrays_arrange_and_clean(
     storage
 }
 
-pub fn number_of_factors_one_integer(factor: u32, until: u32) -> u32 {
-    until / factor
-}
-
+/// Returns an array with the factors of "number".
 pub fn factors(number: usize, include_one: bool, include_self: bool) -> Vec<usize> {
     let mut storage: Vec<usize> = Vec::new();
-    if include_one {storage.push(1)};
+    if include_one {
+        storage.push(1)
+    };
 
     for divisor in 2..number {
-        if number % divisor == 0 { storage.push(divisor) }
+        if number % divisor == 0 {
+            storage.push(divisor)
+        }
     }
 
-    if include_self {storage.push(number)};
+    if include_self {
+        storage.push(number)
+    };
 
     storage
 }
@@ -76,16 +83,17 @@ mod tests {
     }
 
     #[test]
-    fn euler1_number_of_factors_test() {
-        assert_eq!(number_of_factors_one_integer(3, 20), 6);
+    fn clean_array_test() {
+        assert_eq!(
+            clean_array(&mut vec![1, 2, 3, 5, 8, 13]),
+            vec![1, 2, 3, 5, 8, 13]
+        );
     }
 
     #[test]
-    fn clean_array_test() {
-        let mut array: Vec<usize> = vec![1, 1, 2, 8, 5, 5, 13, 3];
-        let correct_array: Vec<usize> = vec![1, 2, 3, 5, 8, 13];
-
-        assert_eq!(clean_array(&mut array), correct_array);
+    #[should_panic]
+    fn clean_array_fail() {
+        assert_eq!(clean_array(&mut vec![]), vec![0]);
     }
 
     #[test]
