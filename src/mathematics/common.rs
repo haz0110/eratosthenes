@@ -39,7 +39,7 @@ pub fn factors(number: usize, include_one: bool, include_self: bool) -> Vec<usiz
         storage.push(1)
     };
 
-    for divisor in 2..number {
+    for divisor in 2..number/2 + 1 {
         if number % divisor == 0 {
             storage.push(divisor)
         }
