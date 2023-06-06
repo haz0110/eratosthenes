@@ -80,6 +80,16 @@ pub fn nth_prime(nth: usize) -> usize {
     primes(nth*12)[nth - 1]
 }
 
+pub fn is_prime(number: &usize) -> bool {
+    let mut result: bool = true;
+
+    for index in 2..number/2+1 {
+        if number % index == 0 { result = false };
+    }
+
+    result
+}
+
 /// calculates until "until", excluding "until"
 pub fn fibonacci(until: usize) -> Vec<usize> {
 
@@ -102,9 +112,9 @@ pub fn fibonacci(until: usize) -> Vec<usize> {
     array
 }
 
-/// Find the nth fibonacci number until 89th
+/// Find the nth fibonacci number until 1_000_000_000_000_000_000
 pub fn nth_fibonacci(nth: usize) -> usize {
-    let fibonacci = fibonacci(18_000_000_000_000_000_000);
+    let fibonacci = fibonacci(1_000_000_000_000_000_000);
 
     fibonacci[nth - 1]
 }
@@ -188,6 +198,12 @@ mod tests {
     }
 
     #[test]
+    fn is_prime_test() {
+        assert!(!is_prime(&10));
+        assert!(is_prime(&13));
+    }
+
+    #[test]
     fn fibonacci_test() {
         assert_eq!(fibonacci(2), vec![1, 1]);
         assert_eq!(fibonacci(3), vec![1, 1, 2]);
@@ -205,7 +221,6 @@ mod tests {
         assert_eq!(nth_fibonacci(12), 144);
         assert_eq!(nth_fibonacci(39), 63245986);
         assert_eq!(nth_fibonacci(40), 102334155);
-        assert_eq!(nth_fibonacci(89), 1779979416004714189);
     }
 
     #[test]

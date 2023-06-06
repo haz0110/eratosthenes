@@ -1,7 +1,10 @@
 #![warn(dead_code)]
 #![allow(unused)]
 
+use core::panic;
 use std::cmp::max;
+
+use crate::mathematics::sequences::is_prime;
 
 pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
     if array.is_empty() {
@@ -19,16 +22,13 @@ pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
 
 /// Accept two array borrows and returns a optimized,
 /// sorted, duplicates removed, exact capacity array.
-pub fn merge_two_arrays_arrange_and_clean(
+pub fn merge_2_arrays(
     array1: &mut [usize],
     array2: &mut [usize],
 ) -> Vec<usize> {
     let mut storage: Vec<usize> = Vec::new();
     storage.extend_from_slice(array1);
     storage.extend_from_slice(array2);
-    storage.sort();
-    storage.dedup();
-    storage.shrink_to_fit();
     storage
 }
 
@@ -50,6 +50,27 @@ pub fn factors(number: usize, include_one: bool, include_self: bool) -> Vec<usiz
     };
 
     storage
+}
+
+pub fn prime_factors(number: usize) -> Vec<usize> {
+
+    if number < 2 { panic!("Enter a number above 1.") };
+
+    let mut factors = factors(number, false, true);
+
+    let mut vector: Vec<usize> = Vec::new();
+
+    for prime in factors.iter() {
+        if is_prime(prime) {
+            vector.push(*prime);
+        }
+    }
+
+    if vector.is_empty() {
+        panic!("Couldn't populate the vector. Make sure your input is valid.")
+    }
+
+    vector
 }
 
 pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
@@ -85,19 +106,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn merge_arrays_test() {
-        let mut array_x: Vec<usize> = vec![3, 6, 9, 12, 15, 18];
-        let mut array_y: Vec<usize> = vec![5, 10, 15];
-        let result: Vec<usize> = merge_two_arrays_arrange_and_clean(&mut array_x, &mut array_y);
-        assert_eq!(result, vec![3, 5, 6, 9, 10, 12, 15, 18]);
-    }
-
-    #[test]
     fn factors_test() {
         assert_eq!(factors(28, true, true), vec![1, 2, 4, 7, 14, 28]);
         assert_eq!(factors(28, false, true), vec![2, 4, 7, 14, 28]);
         assert_eq!(factors(28, true, false), vec![1, 2, 4, 7, 14]);
         assert_eq!(factors(28, false, false), vec![2, 4, 7, 14]);
+    }
+
+    #[test]
+    fn prime_factors_test() {
+        assert_eq!(prime_factors(28), vec![2, 7]);
+        assert_eq!(prime_factors(2), vec![2]);
+        assert_eq!(prime_factors(30), vec![2, 3, 5]);
     }
 
     #[test]
@@ -120,10 +140,10 @@ mod tests {
     }
 
     #[test]
-    fn merge_two_arrays_arrange_and_clean_test() {
+    fn merge_2_arrays_test() {
         assert_eq!(
-            merge_two_arrays_arrange_and_clean(&mut [1, 3, 5, 8], &mut [2, 3, 5, 7]),
-            vec![1, 2, 3, 5, 7, 8]
+            merge_2_arrays(&mut [1, 3, 5, 8], &mut [2, 3, 5, 7]),
+            vec![1, 3, 5, 8, 2, 3, 5, 7]
         )
     }
 

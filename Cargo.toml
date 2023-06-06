@@ -3,6 +3,3 @@ name = "hazs_tools"
 version = "0.1.0"
 edition = "2021"
 readme = "README.md"
-
-[dependencies]
-palindrome = "0.1.1"
