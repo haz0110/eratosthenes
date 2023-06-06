@@ -6,4 +6,3 @@ readme = "README.md"
 
 [dependencies]
 palindrome = "0.1.1"
-primes = "0.3.0"

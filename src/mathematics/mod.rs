@@ -1,6 +1,4 @@
 pub mod common;
-pub mod fibonacci;
 pub mod palindrome;
-pub mod prime_algorithms;
-pub mod sequence;
+pub mod sequences;
 pub mod square_operations;

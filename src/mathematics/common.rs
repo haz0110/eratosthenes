@@ -5,7 +5,7 @@ use std::cmp::max;
 
 pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
     if array.is_empty() {
-        panic!("Empty array error.")
+        panic!("Cannot work on empty array.")
     };
 
     let mut storage: Vec<usize> = Vec::with_capacity(array.len());
