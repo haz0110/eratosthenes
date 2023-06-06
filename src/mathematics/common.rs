@@ -73,6 +73,16 @@ pub fn prime_factors(number: usize) -> Vec<usize> {
     vector
 }
 
+pub fn sum_of_array_items(array: Vec<usize>) -> usize {
+    let mut sum: usize = 0;
+
+    for item in array.iter() {
+        sum += item;
+    }
+
+    sum
+}
+
 pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
     let mut sum = 0;
     for (index, item) in array.to_owned().iter().enumerate() {
