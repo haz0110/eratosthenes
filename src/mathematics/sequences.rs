@@ -1,4 +1,5 @@
 use core::panic;
+use crate::mathematics::common::to_power;
 
 /// For more information about this algorithm see
 /// https://oeis.org/A000217
@@ -108,6 +109,35 @@ pub fn nth_fibonacci(nth: usize) -> usize {
     fibonacci[nth - 1]
 }
 
+/// Geometric Sequence: a_n = a * r^(n-1)
+/// 
+/// n_start > 1
+/// 
+/// r > 0
+/// 
+/// Starts with a_(n_start)
+/// 
+/// Ends with a_(n_end)
+/// 
+/// n_start < n_end
+pub fn geometric_sequence(a: usize, r: usize, n_start: usize, n_end: usize) -> Vec<usize> {
+
+    if n_start < 1 { panic!("n_start must be higher than 1.") };
+    if r < 1 { panic!("r must be higher than 1") };
+    if n_start >= n_end { panic!("n_start must be lesser than n_end") };
+
+
+    let mut vector: Vec<usize> = Vec::new();
+
+    for n in n_start..=n_end {
+        vector.push(a * to_power(r, n - 1));
+    }
+
+    if vector.is_empty() { panic!("Couldn't populate the vector.") };
+
+    vector
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -176,5 +206,12 @@ mod tests {
         assert_eq!(nth_fibonacci(39), 63245986);
         assert_eq!(nth_fibonacci(40), 102334155);
         assert_eq!(nth_fibonacci(89), 1779979416004714189);
+    }
+
+    #[test]
+    fn geometric_sequence_test() {
+        assert_eq!(geometric_sequence(3, 2, 1, 4), vec![3, 6, 12, 24]);
+        assert_eq!(geometric_sequence(4, 12, 1, 8), vec![4, 48, 576, 6912, 82944, 995328, 11943936, 143327232]);
+        assert_eq!(geometric_sequence(3, 5, 2, 3), vec![15, 75]);
     }
 }

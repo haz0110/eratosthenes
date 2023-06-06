@@ -62,6 +62,24 @@ pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
     sum
 }
 
+pub fn to_power(number: usize, power: usize) -> usize {
+
+    if number < 2 {panic!("Number must be greater than 1.")};
+
+    if power == 0 {
+        return 1;
+    }
+
+    let multiplier = number;
+    let mut result: usize = 1;
+
+    for index in 1..=power {
+        result *= multiplier;
+    }
+
+    result
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -107,5 +125,12 @@ mod tests {
             merge_two_arrays_arrange_and_clean(&mut [1, 3, 5, 8], &mut [2, 3, 5, 7]),
             vec![1, 2, 3, 5, 7, 8]
         )
+    }
+
+    #[test]
+    fn to_power_test() {
+        assert_eq!(to_power(2, 3), 8);
+        assert_eq!(to_power(10, 2), 100);
+        assert_eq!(to_power(4, 8), 65536);
     }
 }
