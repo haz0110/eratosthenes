@@ -1,13 +1,13 @@
 use core::panic;
 
-use crate::mathematics::sequences::is_prime;
+use crate::sequences::is_prime;
 
 /// Sorts the vector in ascending order, removes duplicate numbers, returns it as a new array.
 /// 
 /// ### Example Usage
 /// 
 /// ```
-/// use hazs_tools::mathematics::common::clean_array;
+/// use eratosthenes::common::clean_array;
 /// 
 /// let array: Vec<usize> = vec![1, 3, 2, 0];
 /// 

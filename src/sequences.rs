@@ -1,5 +1,5 @@
 use core::panic;
-use crate::mathematics::common::to_power;
+use crate::common::to_power;
 
 /// For more information about this algorithm see
 /// https://oeis.org/A000217
