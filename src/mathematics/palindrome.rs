@@ -8,7 +8,6 @@ pub fn is_palindrome(number: usize) -> bool {
     if number_as_string == reversed { is_palindrome = true };
 
     is_palindrome
-
 }
 
 #[cfg(test)]

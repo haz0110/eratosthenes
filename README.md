@@ -1,4 +1,8 @@
-A Rust library for various tools helping in various subjects.
+A Rust library for various functions helping in 64bit usize mathematical operations.
 
-Featuring:
--   [Project Euler](https://projecteuler.net/) helper functions for various problems.
+Calculates:
+-   primes(), nth_prime(), is_prime().
+-   fibonacci(), nth_fibonacci().
+-   geometric_sequence() where a * r ^ (n - 1).
+-   is_palindrome()
+-   sum(), sum_even(), sum_odd()

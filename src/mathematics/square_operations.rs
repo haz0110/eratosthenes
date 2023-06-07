@@ -1,10 +1,8 @@
 pub fn sum_of_squares(until: usize) -> usize {
     let mut sum: usize = 0;
-
     for number in 1..=until {
         sum += number * number;
     }
-
     sum
 }
 

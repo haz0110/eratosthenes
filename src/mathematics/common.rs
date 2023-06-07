@@ -1,22 +1,27 @@
-#![warn(dead_code)]
-#![allow(unused)]
-
 use core::panic;
-use std::cmp::max;
 
 use crate::mathematics::sequences::is_prime;
 
-pub fn clean_array(array: &mut Vec<usize>) -> Vec<usize> {
+/// Sorts the vector in ascending order, removes duplicate numbers, returns it as a new array.
+/// 
+/// ### Example Usage
+/// 
+/// ```
+/// use hazs_tools::mathematics::common::clean_array;
+/// 
+/// let array: Vec<usize> = vec![1, 3, 2, 0];
+/// 
+/// let cleaned_array = clean_array(&array);
+/// ```
+pub fn clean_array(array: &Vec<usize>) -> Vec<usize> {
     if array.is_empty() {
         panic!("Cannot work on empty array.")
     };
 
-    let mut storage: Vec<usize> = Vec::with_capacity(array.len());
+    let mut storage: Vec<usize> = Vec::new();
     storage.extend_from_slice(array);
     storage.sort();
     storage.dedup();
-    storage.shrink_to_fit();
-
     storage
 }
 
@@ -33,21 +38,20 @@ pub fn merge_2_arrays(
 }
 
 /// Returns an array with the factors of "number".
-pub fn factors(number: usize, include_one: bool, include_self: bool) -> Vec<usize> {
-    let mut storage: Vec<usize> = Vec::new();
-    if include_one {
-        storage.push(1)
-    };
+/// 
+/// Factors include 1 and the number itself.
+pub fn factors(number: usize) -> Vec<usize> {
 
+    if number == 1 { return vec![1] };
+
+    let mut storage: Vec<usize> = Vec::new();
+    storage.push(1);
     for divisor in 2..number / 2 + 1 {
         if number % divisor == 0 {
             storage.push(divisor)
         }
     }
-
-    if include_self {
-        storage.push(number)
-    };
+    storage.push(number);
 
     storage
 }
@@ -56,7 +60,7 @@ pub fn prime_factors(number: usize) -> Vec<usize> {
 
     if number < 2 { panic!("Enter a number above 1.") };
 
-    let mut factors = factors(number, false, true);
+    let factors = factors(number);
 
     let mut vector: Vec<usize> = Vec::new();
 
@@ -73,19 +77,20 @@ pub fn prime_factors(number: usize) -> Vec<usize> {
     vector
 }
 
-pub fn sum_of_array_items(array: Vec<usize>) -> usize {
+/// sums all the numbers in an array.
+pub fn sum(array: Vec<usize>) -> usize {
     let mut sum: usize = 0;
 
     for item in array.iter() {
         sum += item;
     }
-
     sum
 }
 
-pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
+/// sums the even numbers in an array.
+pub fn sum_even(array: Vec<usize>) -> usize {
     let mut sum = 0;
-    for (index, item) in array.to_owned().iter().enumerate() {
+    for (index, item) in array.iter().enumerate() {
         if item % 2 == 0 {
             sum += array[index];
         }
@@ -93,19 +98,37 @@ pub fn sum_of_even_array_items(array: &mut [usize]) -> usize {
     sum
 }
 
+/// sums the odd numbers in an array.
+pub fn sum_odd(array: Vec<usize>) -> usize {
+    let mut sum = 0;
+    for (index, item) in array.iter().enumerate() {
+        if item % 2 == 1 {
+            sum += array[index];
+        }
+    }
+    sum
+}
+
+/// returns number^power
 pub fn to_power(number: usize, power: usize) -> usize {
 
-    if number < 2 {panic!("Number must be greater than 1.")};
+    if number == 0 { panic!("What is the power of 0? You tell me.") };
+    if number == 1 { return 1; };
 
     if power == 0 {
         return 1;
     }
 
-    let multiplier = number;
+    let multiplier: usize = number;
     let mut result: usize = 1;
 
-    for index in 1..=power {
+    let mut number: usize = 1;
+    loop {
         result *= multiplier;
+        if number == power {
+            break;
+        }
+        number += 1;
     }
 
     result
@@ -117,10 +140,9 @@ mod tests {
 
     #[test]
     fn factors_test() {
-        assert_eq!(factors(28, true, true), vec![1, 2, 4, 7, 14, 28]);
-        assert_eq!(factors(28, false, true), vec![2, 4, 7, 14, 28]);
-        assert_eq!(factors(28, true, false), vec![1, 2, 4, 7, 14]);
-        assert_eq!(factors(28, false, false), vec![2, 4, 7, 14]);
+        assert_eq!(factors(28), vec![1, 2, 4, 7, 14, 28]);
+        assert_eq!(factors(1), vec![1]);
+        assert_eq!(factors(2), vec![1, 2]);
     }
 
     #[test]
@@ -133,7 +155,7 @@ mod tests {
     #[test]
     fn clean_array_test() {
         assert_eq!(
-            clean_array(&mut vec![1, 2, 3, 5, 8, 13]),
+            clean_array(&vec![1, 2, 3, 5, 8, 13]),
             vec![1, 2, 3, 5, 8, 13]
         );
     }
@@ -141,12 +163,22 @@ mod tests {
     #[test]
     #[should_panic]
     fn clean_array_fail() {
-        assert_eq!(clean_array(&mut vec![]), vec![0]);
+        assert_eq!(clean_array(&vec![]), vec![0]);
     }
 
     #[test]
-    fn sum_of_even_array_items_test() {
-        assert_eq!(sum_of_even_array_items(&mut [1, 3, 6, 11]), 6)
+    fn sum_test() {
+        assert_eq!(sum(vec![1, 3, 6, 11]), 21)
+    }
+
+    #[test]
+    fn sum_even_test() {
+        assert_eq!(sum_even(vec![1, 3, 6, 11]), 6)
+    }
+
+    #[test]
+    fn sum_odd_test() {
+        assert_eq!(sum_odd(vec![1, 3, 6, 11]), 15)
     }
 
     #[test]

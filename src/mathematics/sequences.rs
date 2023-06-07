@@ -22,7 +22,10 @@ pub fn nth_triangular(nth: usize) -> usize {
     triangulars_list[triangulars_list.len() - 1]
 }
 
-/// Calculates and stores primes. Excludes "until".
+/// Calculates and stores primes.
+/// 
+/// Excludes "until".
+/// 
 /// Finds primes until 100_000_000 in approximately 15 seconds.
 pub fn primes(until: usize) -> Vec<usize> {
     // First 4 primes are handled here.
@@ -75,13 +78,29 @@ pub fn primes(until: usize) -> Vec<usize> {
     storage
 }
 
-
 pub fn nth_prime(nth: usize) -> usize {
-    primes(nth*12)[nth - 1]
+
+    if nth == 1 {
+        return 2;
+    }
+
+    let mut nth_prime: usize = 1;
+    let mut number: usize = 3;
+    let mut current_prime: usize = 0;
+    loop {
+        if is_prime(&number) { current_prime = number; nth_prime += 1;};
+        number += 2;
+
+        if nth_prime == nth { break; }
+    }
+
+    current_prime
 }
 
 pub fn is_prime(number: &usize) -> bool {
     let mut result: bool = true;
+
+    if *number == 1 { return false; }
 
     for index in 2..number/2+1 {
         if number % index == 0 { result = false };
@@ -195,12 +214,14 @@ mod tests {
         assert_eq!(nth_prime(10), 29);
         assert_eq!(nth_prime(1), 2);
         assert_eq!(nth_prime(2), 3);
+        assert_eq!(nth_prime(1000), 7919);
     }
 
     #[test]
     fn is_prime_test() {
         assert!(!is_prime(&10));
         assert!(is_prime(&13));
+        assert!(!is_prime(&1));
     }
 
     #[test]
