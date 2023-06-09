@@ -159,7 +159,7 @@ pub fn geometric_sequence(a: usize, r: usize, n_start: usize, n_end: usize) -> V
     let mut vector: Vec<usize> = Vec::new();
 
     for n in n_start..=n_end {
-        vector.push(a * to_power(r, n - 1));
+        vector.push(a * to_power(&r, &(n - 1)));
     }
 
     if vector.is_empty() { panic!("Couldn't populate the vector.") };
