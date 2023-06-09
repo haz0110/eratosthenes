@@ -82,7 +82,7 @@ pub fn prime_factors(number: &usize) -> Vec<usize> {
 }
 
 /// sums all the numbers in an array.
-pub fn sum(array: &Vec<usize>) -> usize {
+pub fn sum(array: &[usize]) -> usize {
 
     let local_array = array;
 
@@ -95,7 +95,7 @@ pub fn sum(array: &Vec<usize>) -> usize {
 }
 
 /// sums the even numbers in an array.
-pub fn sum_even(array: &Vec<usize>) -> usize {
+pub fn sum_even(array: &[usize]) -> usize {
 
     let local_array = array;
 
@@ -109,7 +109,7 @@ pub fn sum_even(array: &Vec<usize>) -> usize {
 }
 
 /// sums the odd numbers in an array.
-pub fn sum_odd(array: &Vec<usize>) -> usize {
+pub fn sum_odd(array: &[usize]) -> usize {
 
     let local_array = array;
 
@@ -138,13 +138,13 @@ pub fn to_power(number: &usize, power: &usize) -> usize {
     let multiplier: usize = local_number;
     let mut result: usize = 1;
 
-    let mut number: usize = 1;
+    let mut local_number: usize = 1;
     loop {
         result *= multiplier;
         if local_number == local_power {
             break;
         }
-        number += 1;
+        local_number += 1;
     }
 
     result
@@ -152,7 +152,6 @@ pub fn to_power(number: &usize, power: &usize) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use crate::PI;
 
     use super::*;
 
@@ -186,17 +185,17 @@ mod tests {
 
     #[test]
     fn sum_test() {
-        assert_eq!(sum(&vec![1, 3, 6, 11]), 21)
+        assert_eq!(sum(&[1, 3, 6, 11]), 21)
     }
 
     #[test]
     fn sum_even_test() {
-        assert_eq!(sum_even(&vec![1, 3, 6, 11]), 6)
+        assert_eq!(sum_even(&[1, 3, 6, 11]), 6)
     }
 
     #[test]
     fn sum_odd_test() {
-        assert_eq!(sum_odd(&vec![1, 3, 6, 11]), 15)
+        assert_eq!(sum_odd(&[1, 3, 6, 11]), 15)
     }
 
     #[test]

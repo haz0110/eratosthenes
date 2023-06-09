@@ -21,8 +21,6 @@ println!("Is {} a prime? -> {}", number, is_prime(&number));
 ```
 */
 
-const PI: f64 = 3.141_592_653_589_793_238;
-
 pub mod common;
 pub mod palindrome;
 pub mod sequences;

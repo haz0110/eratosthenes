@@ -1,20 +1,47 @@
 use core::panic;
 use crate::common::to_power;
 
-/// For more information about this algorithm see
-/// https://oeis.org/A000217
-pub fn triangular_numbers(number_of_triangulars: usize) -> Vec<usize> {
-    let mut triangulars: Vec<usize> = Vec::new();
+/// It is a sequence of numbers in which each successive term is a
+/// sum of its preceding term and a fixed number.
+/// 
+/// Formula: a + ( n_i * d) starting from n = 0
+pub fn arithmetic_sequence(a: &usize, d: &usize, n: &usize) -> Vec<usize> {
+    let mut result: Vec<usize> = Vec::new();
+    let local_a = *a;
+    let local_d = *d;
+    let local_n: usize = *n;
 
-    if number_of_triangulars < 1 {
-        panic!("You may request 1 or more triangular numbers.")
+    for index in 0..local_n {
+        result.push( local_a + index * local_d );
     }
 
-    for index in 0..number_of_triangulars {
-        triangulars.push(index * (index + 1) / 2);
+    result
+}
+
+/// Find the nth fibonacci number until 1_000_000_000_000_000_000
+pub fn nth_fibonacci(nth: usize) -> usize {
+    let fibonacci = fibonacci(1_000_000_000_000_000_000);
+
+    fibonacci[nth - 1]
+}
+
+pub fn nth_prime(nth: usize) -> usize {
+
+    if nth == 1 {
+        return 2;
     }
 
-    triangulars
+    let mut nth_prime: usize = 1;
+    let mut number: usize = 3;
+    let mut current_prime: usize = 0;
+    loop {
+        if is_prime(&number) { current_prime = number; nth_prime += 1;};
+        number += 2;
+
+        if nth_prime == nth { break; }
+    }
+
+    current_prime
 }
 
 pub fn nth_triangular(nth: usize) -> usize {
@@ -78,23 +105,20 @@ pub fn primes(until: usize) -> Vec<usize> {
     storage
 }
 
-pub fn nth_prime(nth: usize) -> usize {
+/// For more information about this algorithm see
+/// https://oeis.org/A000217
+pub fn triangular_numbers(number_of_triangulars: usize) -> Vec<usize> {
+    let mut triangulars: Vec<usize> = Vec::new();
 
-    if nth == 1 {
-        return 2;
+    if number_of_triangulars < 1 {
+        panic!("You may request 1 or more triangular numbers.")
     }
 
-    let mut nth_prime: usize = 1;
-    let mut number: usize = 3;
-    let mut current_prime: usize = 0;
-    loop {
-        if is_prime(&number) { current_prime = number; nth_prime += 1;};
-        number += 2;
-
-        if nth_prime == nth { break; }
+    for index in 0..number_of_triangulars {
+        triangulars.push(index * (index + 1) / 2);
     }
 
-    current_prime
+    triangulars
 }
 
 pub fn is_prime(number: &usize) -> bool {
@@ -131,13 +155,6 @@ pub fn fibonacci(until: usize) -> Vec<usize> {
     array
 }
 
-/// Find the nth fibonacci number until 1_000_000_000_000_000_000
-pub fn nth_fibonacci(nth: usize) -> usize {
-    let fibonacci = fibonacci(1_000_000_000_000_000_000);
-
-    fibonacci[nth - 1]
-}
-
 /// Geometric Sequence: a_n = a * r^(n-1)
 /// 
 /// n_start > 1
@@ -167,9 +184,35 @@ pub fn geometric_sequence(a: usize, r: usize, n_start: usize, n_end: usize) -> V
     vector
 }
 
+/// It concerns expressing the sum of the p-th power
+/// of the first n integers.
+/// 
+/// for example, n: 4, p: 2 returns the following vector
+/// 
+/// 1, 4, 9, 16
+pub fn faulhabers_formula(n: &usize, p: &usize) -> Vec<usize> {
+
+    let local_p: usize = *p;
+
+    let local_n: usize = *n;
+
+    let mut result: Vec<usize> = Vec::new();
+
+    for index in 1..=local_n {
+        result.push(to_power(&index, &local_p));
+    }
+
+    result
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn arithmetic_sequence_test() {
+        assert_eq!(arithmetic_sequence(&2, &3, &4), [2, 5, 8, 11]);
+    }
 
     #[test]
     fn triangular_numbers_test() {
@@ -249,5 +292,10 @@ mod tests {
         assert_eq!(geometric_sequence(3, 2, 1, 4), vec![3, 6, 12, 24]);
         assert_eq!(geometric_sequence(4, 12, 1, 8), vec![4, 48, 576, 6912, 82944, 995328, 11943936, 143327232]);
         assert_eq!(geometric_sequence(3, 5, 2, 3), vec![15, 75]);
+    }
+
+    #[test]
+    fn faulhabers_formula_test() {
+        assert_eq!(faulhabers_formula(&10, &3), vec![1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]);
     }
 }
