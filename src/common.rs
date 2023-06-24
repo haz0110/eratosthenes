@@ -1,6 +1,5 @@
 use core::panic;
-
-use crate::sequences::is_prime;
+use crate::sequences::primes::is_prime;
 
 /// Sorts the vector in ascending order, removes duplicate numbers, returns it as a new array.
 /// 
@@ -156,6 +155,22 @@ mod tests {
     use super::*;
 
     #[test]
+    fn clean_array_test() {
+        assert_eq!(
+            clean_array(&vec![1, 2, 3, 5, 8, 13]),
+            vec![1, 2, 3, 5, 8, 13]
+        );
+    }
+
+    #[test]
+    fn merge_2_arrays_test() {
+        assert_eq!(
+            merge_2_arrays(&mut [1, 3, 5, 8], &mut [2, 3, 5, 7]),
+            vec![1, 3, 5, 8, 2, 3, 5, 7]
+        )
+    }
+
+    #[test]
     fn factors_test() {
         assert_eq!(factors(&28), vec![1, 2, 4, 7, 14, 28]);
         assert_eq!(factors(&1), vec![1]);
@@ -167,14 +182,6 @@ mod tests {
         assert_eq!(prime_factors(&28), vec![2, 7]);
         assert_eq!(prime_factors(&2), vec![2]);
         assert_eq!(prime_factors(&30), vec![2, 3, 5]);
-    }
-
-    #[test]
-    fn clean_array_test() {
-        assert_eq!(
-            clean_array(&vec![1, 2, 3, 5, 8, 13]),
-            vec![1, 2, 3, 5, 8, 13]
-        );
     }
 
     #[test]
@@ -196,14 +203,6 @@ mod tests {
     #[test]
     fn sum_odd_test() {
         assert_eq!(sum_odd(&[1, 3, 6, 11]), 15)
-    }
-
-    #[test]
-    fn merge_2_arrays_test() {
-        assert_eq!(
-            merge_2_arrays(&mut [1, 3, 5, 8], &mut [2, 3, 5, 7]),
-            vec![1, 3, 5, 8, 2, 3, 5, 7]
-        )
     }
 
     #[test]

@@ -12,7 +12,7 @@ Operations for floating numbers and negative numbers are not planned for now, ho
 
 ### Example Usage 1
 ```
-use eratosthenes::sequences::is_prime;
+use eratosthenes::sequences::primes::is_prime;
 
 let number: usize = 10;
 
