@@ -1,5 +1,14 @@
 [package]
 name = "eratosthenes"
 version = "0.1.0"
+authors = ["Hazar <hazar@a0110.com>"]
+description = "Mathematical operations library for Rust."
 edition = "2021"
 readme = "README.md"
+license = "LICENSE-MIT or LICENSE-APACHE"
+repository = "https://github.com/haz0110/eratosthenes"
+rust-version = "1.70"
+keywords = ["mathematics", "algorithms", "sequences", "primes", "factors"]
+
+[metadata]
+categories = ["mathematics", "algorithms"]
