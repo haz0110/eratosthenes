@@ -7,19 +7,12 @@ Note that this library mostly works with `usize` integers, tested on 64 bit syst
 */
 
 pub mod sequences;
+pub mod trigonometry;
 
-pub mod array_manipulations;
-pub use self::array_manipulations::{array_clean, array_merge};
-
-pub mod factorizations;
-pub use self::factorizations::{factors, factors_prime};
-
-pub mod mean;
-pub use self::mean::{mean_f64, mean_usize};
-
-pub mod palindrome;
-pub use self::palindrome::is_palindrome;
-
-pub mod summations;
-pub use self::summations::{sum_even, sum_odd};
+pub mod common;
+pub use self::common::array_manipulations::{array_clean, array_merge};
+pub use self::common::factorizations::{factors, factors_prime};
+pub use self::common::mean::{mean_f64, mean_usize};
+pub use self::common::palindrome::is_palindrome;
+pub use self::common::summations::{sum_even, sum_odd};
 
