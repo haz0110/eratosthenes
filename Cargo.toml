@@ -1,6 +1,6 @@
 [package]
 name = "eratosthenes"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Hazar <hazar@a0110.com>"]
 description = "Mathematical operations library for Rust."
 edition = "2021"
