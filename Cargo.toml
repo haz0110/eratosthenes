@@ -9,6 +9,3 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/haz0110/eratosthenes"
 rust-version = "1.70"
 keywords = ["mathematics", "algorithms", "sequences", "primes", "factors"]
-
-[metadata]
-categories = ["mathematics", "algorithms"]

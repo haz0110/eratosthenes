@@ -15,7 +15,7 @@
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::primes;
 ///
 /// let until = 20;
@@ -63,7 +63,7 @@ pub fn primes(until: usize) -> Vec<usize> {
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::nth_prime;
 ///
 /// let nth = 10;
@@ -99,7 +99,7 @@ pub fn nth_prime(nth: usize) -> usize {
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::is_prime;
 ///
 /// let number = 37;

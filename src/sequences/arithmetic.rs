@@ -11,7 +11,7 @@
 /// * `n` - The number of terms to generate in the arithmetic sequence.
 ///
 /// # Examples
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::arithmetic;
 ///
 /// let a = 2;

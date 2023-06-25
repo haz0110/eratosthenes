@@ -9,7 +9,7 @@
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::trigonometry::cos;
 ///
 /// let radians = 1.0;
@@ -31,6 +31,36 @@ pub fn cos(radians: f64) -> f64 {
     radians.cos()
 }
 
+/// Calculates the arc cosine of a value in radians.
+///
+/// Given a value (`radians`), this function returns the arc cosine value in radians
+/// as a `f64` floating-point number.
+///
+/// # Arguments
+///
+/// * `radians` - The value for which the arc cosine is calculated.
+///
+/// # Examples
+///
+/// ```rust
+/// use eratosthenes::trigonometry::acos;
+///
+/// let value = 0.5;
+/// let arc_cosine = acos(value);
+/// println!("Arc cosine of {} is: {}", value, arc_cosine);
+/// ```
+///
+/// # Remarks
+///
+/// The `acos` function internally uses the arc cosine method of the `f64` type, which
+/// returns the arc cosine value in radians. The result is returned as a `f64` to maintain
+/// consistency in the function's return type.
+///
+/// It's important to note that the input value must be within the range [-1.0, 1.0]. If the
+/// input value falls outside this range, the function may produce NaN (Not-a-Number) as the result.
+///
+/// The returned arc cosine value represents the angle whose cosine is equal to the given input value.
+/// The result is in radians, which is the standard unit of measurement for trigonometric functions.
 pub fn acos(radians: f64) -> f64 {
     radians.acos()
 }

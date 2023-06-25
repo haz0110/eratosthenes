@@ -16,7 +16,7 @@
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::fibonacci;
 ///
 /// let until = 20;
@@ -61,7 +61,7 @@ pub fn fibonacci(until: usize) -> Vec<usize> {
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::nth_fibonacci;
 ///
 /// let nth = 10;

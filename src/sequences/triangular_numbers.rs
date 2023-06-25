@@ -1,4 +1,4 @@
-/// /// Generates a vector of triangular numbers up to a given count.
+/// Generates a vector of triangular numbers up to a given count.
 ///
 /// # Arguments
 ///
@@ -10,7 +10,7 @@
 ///
 /// # Example
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::triangular_numbers;
 /// let t_nums: Vec<usize> = triangular_numbers(5);
 /// assert_eq!(t_nums, vec![0, 1, 3, 6, 10]);
@@ -33,7 +33,7 @@ pub fn triangular_numbers(number_of_triangulars: usize) -> Vec<usize> {
 ///
 /// # Example
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::nth_triangular;
 /// let fifth_triangular = nth_triangular(5);
 /// assert_eq!(fifth_triangular, 10);

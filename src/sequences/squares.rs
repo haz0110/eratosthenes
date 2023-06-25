@@ -9,7 +9,7 @@
 ///
 /// # Examples
 ///
-/// ```
+/// ```rust
 /// use eratosthenes::sequences::square_numbers;
 ///
 /// let number_of_squares = 10;
