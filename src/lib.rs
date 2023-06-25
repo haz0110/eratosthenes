@@ -9,6 +9,8 @@ Note that this library mostly works with `usize` integers, tested on 64 bit syst
 pub mod sequences;
 pub mod trigonometry;
 
+pub mod statistics;
+
 pub mod common;
 pub use self::common::array_manipulations::{array_clean, array_merge};
 pub use self::common::factorizations::{factors, factors_prime};
