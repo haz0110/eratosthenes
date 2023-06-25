@@ -15,11 +15,11 @@ pub mod square_operations;
 /// 
 /// # Example Usage 1
 /// ```
-/// use eratosthenes::common::clean_array;
+/// use eratosthenes::array_clean;
 /// 
 /// let array: Vec<usize> = vec![1, 3, 2, 0];
 /// 
-/// let cleaned_array = clean_array(&array);
+/// let cleaned_array = array_clean(&array);
 /// ```
 pub fn array_clean(array: &Vec<usize>) -> Vec<usize> {
     if array.is_empty() {
