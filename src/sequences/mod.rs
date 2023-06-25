@@ -4,3 +4,4 @@ pub mod fibonacci;
 pub mod primes;
 pub mod geometric;
 pub mod faulhabers;
+pub mod square_numbers;

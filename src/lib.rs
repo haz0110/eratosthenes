@@ -4,13 +4,11 @@ Mathematics library written in pure Rust.
 
 This library is inspired while solving projecteuler.net problems. You may find the functions of this library useful for those problems.
 
-'use eratosthenes::mathametics;' to access all Math related functions.
-
 Note that this library works with `usize` integers, tested on 64 bit systems, and all functions returns whether a `usize` or `Vec<usize>`.
 
-Operations for floating numbers and negative numbers are not planned for now, however this may change in future.
+Operations for floating numbers and negative numbers are not planned for now.
 
-### Example Usage 1
+# Example Usage 1
 ```
 use eratosthenes::sequences::primes::is_prime;
 
@@ -25,3 +23,7 @@ pub mod common;
 pub mod palindrome;
 pub mod sequences;
 pub mod square_operations;
+
+pub fn clean_array(array: &Vec<usize>) -> Vec<usize> {
+    common::clean_array(&array)
+}

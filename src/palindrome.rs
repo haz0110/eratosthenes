@@ -3,9 +3,11 @@ pub fn is_palindrome(number: usize) -> bool {
     let mut is_palindrome: bool = false;
 
     let number_as_string: String = format!("{:?}", number);
-    let reversed = number_as_string.chars().rev().collect::<String>();
+    let reversed: String = number_as_string.chars().rev().collect::<String>();
 
-    if number_as_string == reversed { is_palindrome = true };
+    if number_as_string == reversed {
+        is_palindrome = true;
+    };
 
     is_palindrome
 }

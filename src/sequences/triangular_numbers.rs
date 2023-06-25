@@ -1,5 +1,5 @@
 /// For more information about this algorithm see
-/// https://oeis.org/A000217
+/// <https://oeis.org/A000217>
 pub fn triangular_numbers(number_of_triangulars: usize) -> Vec<usize> {
     let mut triangulars: Vec<usize> = Vec::new();
 

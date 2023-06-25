@@ -1,9 +1,21 @@
+/*!
+Common mathematical functions.
+# Example Usage 1
+```
+use eratosthenes::common;
+
+let array: Vec<usize> = vec![1, 2, 3];
+
+// prints "6"
+println!("{}", common::sum(&array));
+```
+*/
+
 use core::panic;
-use crate::sequences::primes::is_prime;
 
 /// Sorts the vector in ascending order, removes duplicate numbers, returns it as a new array.
 /// 
-/// ### Example Usage
+/// # Example
 /// 
 /// ```
 /// use eratosthenes::common::clean_array;
@@ -68,7 +80,7 @@ pub fn prime_factors(number: &usize) -> Vec<usize> {
     let mut vector: Vec<usize> = Vec::new();
 
     for prime in factors.iter() {
-        if is_prime(prime) {
+        if crate::sequences::primes::is_prime(prime) {
             vector.push(*prime);
         }
     }
