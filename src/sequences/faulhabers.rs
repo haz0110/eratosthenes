@@ -13,7 +13,7 @@ pub fn faulhabers(n: &usize, p: &usize) -> Vec<usize> {
     let mut result: Vec<usize> = Vec::new();
 
     for index in 1..=local_n {
-        result.push(crate::common::to_power(&index, &local_p));
+        result.push(crate::to_power(&index, &local_p));
     }
 
     result
