@@ -1,4 +1,3 @@
-
 /// Generates prime numbers up to a specified limit using the Sieve of Eratosthenes algorithm.
 ///
 /// Given the limit (`until`), this function returns a vector (`Vec`) containing all prime

@@ -28,9 +28,6 @@ mod tests {
 
     #[test]
     fn square_numbers_test() {
-        assert_eq!(
-            square_numbers(10),
-            vec![0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-        );
+        assert_eq!(square_numbers(10), vec![0, 1, 4, 9, 16, 25, 36, 49, 64, 81]);
     }
 }
