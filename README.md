@@ -1,5 +1,7 @@
 # eratosthenes
 
+v0.2.0 is in alpha stage. Please report any issues you encounter via <mailto:hazar@a0110.com>
+
 eratosthenes is a mathematics library written in pure Rust. It provides various mathematical operations and sequences commonly used in solving mathematical problems, particularly those found on [Project Euler](https://projecteuler.net/). This library is designed to be simple, efficient, and easy to use.
 
 Please note that this library is in its early stages and missing important features. It is evolving with time.
