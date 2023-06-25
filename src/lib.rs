@@ -9,7 +9,6 @@ Note that this library works with `usize` integers, tested on 64 bit systems, an
 use core::panic;
 
 pub mod sequences;
-pub mod square_operations;
 
 /// Sorts the vector in ascending order, removes duplicate numbers, returns it as a new array.
 /// 
@@ -146,6 +145,11 @@ pub fn sum_odd(array: &[usize]) -> usize {
     sum
 }
 
+pub fn square(number: &usize) -> usize {
+    let local_number: usize = number.clone();
+    local_number * local_number
+}
+
 /// returns number^power
 pub fn to_power(number: &usize, power: &usize) -> usize {
 
@@ -235,6 +239,13 @@ mod tests {
     #[test]
     fn sum_odd_test() {
         assert_eq!(sum_odd(&[1, 3, 6, 11]), 15)
+    }
+
+    #[test]
+    fn square_test() {
+        assert_eq!(square(&10), 100);
+        assert_eq!(square(&0), 0);
+        assert_eq!(square(&3), 9);
     }
 
     #[test]
