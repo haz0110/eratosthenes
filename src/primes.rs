@@ -9,34 +9,34 @@
 /// * `until` - The limit for generating prime numbers. The sequence will contain all prime
 ///             numbers less than or equal to this limit.
 ///
-/// # Panics
+/// # Error
 ///
-/// This function will panic if the `until` parameter is less than 2, as there are no prime
+/// This function will throw error if the `until` parameter is less than 2, as there are no prime
 /// numbers below 2.
 ///
 /// # Examples
 ///
 /// ```
-/// use eratosthenes::sequences::primes;
+/// use eratosthenes::primes;
 ///
 /// let until = 20;
-/// let prime_sequence = primes(until);
+/// let prime_sequence = primes(until).unwrap();
 /// assert_eq!(prime_sequence, vec![2, 3, 5, 7, 11, 13, 17, 19]);
 /// ```
-pub fn primes(until: usize) -> Vec<usize> {
+pub fn primes(until: usize) -> Result<Vec<usize>, &'static str> {
     if until < 2 {
-        panic!("There are nor prime numbers under 2.");
+        return Err("There are no prime numbers under 2.");
     };
 
-    let mut sieve: Vec<bool> = vec![true; until + 1];
+    let mut sieve: Vec<bool> = vec![true; until as usize + 1];
     sieve[0] = false;
     sieve[1] = false;
 
     let mut number: usize = 2;
-    while number * number <= until {
+    while number * number <= until as usize {
         if sieve[number] {
             let mut multiple: usize = number * number;
-            while multiple <= until {
+            while multiple <= until as usize {
                 sieve[multiple] = false;
                 multiple += number;
             }
@@ -44,14 +44,14 @@ pub fn primes(until: usize) -> Vec<usize> {
         number += 1;
     }
 
-    let primes: Vec<usize> = sieve
+    let result: Vec<usize> = sieve
         .iter()
         .enumerate()
         .filter(|(_, &is_prime)| is_prime)
         .map(|(number, _)| number)
         .collect();
 
-    primes
+    Ok(result)
 }
 
 /// Finds the nth prime number.
@@ -65,28 +65,32 @@ pub fn primes(until: usize) -> Vec<usize> {
 /// # Examples
 ///
 /// ```
-/// use eratosthenes::sequences::nth_prime;
+/// use eratosthenes::nth_prime;
 ///
-/// let nth = 10;
-/// let prime = nth_prime(nth);
+/// let nth: usize = 10;
+/// let prime = nth_prime(nth).unwrap();
 /// assert_eq!(prime, 29);
 /// ```
-pub fn nth_prime(nth: usize) -> usize {
+pub fn nth_prime(nth: usize) -> Result<usize, &'static str> {
+    
+    // exception cases
+    if nth == 0 {
+        return Err("There is no 0th prime number.");
+    }
     if nth == 1 {
-        return 2;
+        return Ok(2);
     }
-
-    let mut primes = vec![2];
-    let mut number = 3;
-
-    while primes.len() < nth {
-        if primes.iter().all(|&prime| number % prime != 0) {
-            primes.push(number);
-        }
-        number += 2;
+    if nth == 2 {
+        return Ok(3);
     }
+    
+    let primes = primes(((nth as f64 * (nth as f64).ln()) * 2.0) as usize)?;
 
-    *primes.last().unwrap()
+    if let Some(&result) = primes.get(nth - 1) {
+        Ok(result)
+    } else {
+        Err("Error occurred while finding the nth prime.")
+    }
 }
 
 /// Checks if a number is prime.
@@ -101,25 +105,36 @@ pub fn nth_prime(nth: usize) -> usize {
 /// # Examples
 ///
 /// ```
-/// use eratosthenes::sequences::is_prime;
+/// use eratosthenes::is_prime;
 ///
 /// let number = 37;
-/// let is_prime_number = is_prime(number);
+/// let is_prime_number = is_prime(number).unwrap();
 /// assert_eq!(is_prime_number, true);
 /// ```
-pub fn is_prime(number: usize) -> bool {
+pub fn is_prime(number: usize) -> Result<bool, &'static str> {
     if number < 2 {
-        return false;
+        return Ok(false);
+    }
+
+    if number == 2 || number == 3 {
+        return Ok(true);
+    }
+
+    if number % 2 == 0 || number % 3 == 0 {
+        return Ok(false);
     }
 
     let sqrt = (number as f64).sqrt() as usize;
-    for index in 2..=sqrt {
-        if number % index == 0 {
-            return false;
+    let mut index = 5;
+
+    while index <= sqrt {
+        if number % index == 0 || number % (index + 2) == 0 {
+            return Ok(false);
         }
+        index += 6;
     }
 
-    true
+    Ok(true)
 }
 
 #[cfg(test)]
@@ -130,7 +145,7 @@ mod tests {
     #[test]
     fn primes_test() {
         assert_eq!(
-            primes(1_050),
+            primes(1_050).unwrap(),
             vec![
                 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79,
                 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
@@ -149,16 +164,20 @@ mod tests {
 
     #[test]
     fn nth_prime_test() {
-        assert_eq!(nth_prime(10), 29);
-        assert_eq!(nth_prime(1), 2);
-        assert_eq!(nth_prime(2), 3);
-        assert_eq!(nth_prime(1000), 7919);
+        assert_eq!(nth_prime(1).unwrap(), 2);
+        assert_eq!(nth_prime(2).unwrap(), 3);
+        assert_eq!(nth_prime(10).unwrap(), 29);
+        assert_eq!(nth_prime(1000).unwrap(), 7_919);
+        // assert_eq!(nth_prime(31_240_412).unwrap(), 598_294_381);
     }
 
     #[test]
     fn is_prime_test() {
-        assert!(!is_prime(10));
-        assert!(is_prime(13));
-        assert!(!is_prime(1));
+        assert!(!is_prime(1).unwrap());
+        assert!(is_prime(13).unwrap());
+        assert!(is_prime(2).unwrap());
+        assert!(is_prime(7_741).unwrap());
+        assert!(is_prime(612_271_815_315_483_857).unwrap());
+
     }
 }
