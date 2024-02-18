@@ -1,28 +1,4 @@
 
-/// Generates prime numbers up to a specified limit using the Sieve of Eratosthenes algorithm.
-///
-/// Given the limit (`until`), this function returns a vector (`Vec`) containing all prime
-/// numbers less than or equal to the specified limit.
-///
-/// # Arguments
-///
-/// * `until` - The limit for generating prime numbers. The sequence will contain all prime
-///             numbers less than or equal to this limit.
-///
-/// # Error
-///
-/// This function will throw error if the `until` parameter is less than 2, as there are no prime
-/// numbers below 2.
-///
-/// # Examples
-///
-/// ```
-/// use eratosthenes::primes;
-///
-/// let until = 20;
-/// let prime_sequence = primes(until).unwrap();
-/// assert_eq!(prime_sequence, vec![2, 3, 5, 7, 11, 13, 17, 19]);
-/// ```
 pub fn primes(until: usize) -> Result<Vec<usize>, &'static str> {
     if until < 2 {
         return Err("There are no prime numbers under 2.");
@@ -54,23 +30,6 @@ pub fn primes(until: usize) -> Result<Vec<usize>, &'static str> {
     Ok(result)
 }
 
-/// Finds the nth prime number.
-///
-/// Given an unsigned integer (`nth`), this function finds and returns the nth prime number.
-///
-/// # Arguments
-///
-/// * `nth` - An unsigned integer. The position of the prime number to find.
-///
-/// # Examples
-///
-/// ```
-/// use eratosthenes::nth_prime;
-///
-/// let nth: usize = 10;
-/// let prime = nth_prime(nth).unwrap();
-/// assert_eq!(prime, 29);
-/// ```
 pub fn nth_prime(nth: usize) -> Result<usize, &'static str> {
     
     // exception cases
@@ -93,24 +52,6 @@ pub fn nth_prime(nth: usize) -> Result<usize, &'static str> {
     }
 }
 
-/// Checks if a number is prime.
-///
-/// Given an unsigned integer (`number`), this function checks if it is a prime number and returns
-/// a boolean indicating the result.
-///
-/// # Arguments
-///
-/// * `number` - An unsigned integer. The number to check for primality.
-///
-/// # Examples
-///
-/// ```
-/// use eratosthenes::is_prime;
-///
-/// let number = 37;
-/// let is_prime_number = is_prime(number).unwrap();
-/// assert_eq!(is_prime_number, true);
-/// ```
 pub fn is_prime(number: usize) -> Result<bool, &'static str> {
     if number < 2 {
         return Ok(false);
