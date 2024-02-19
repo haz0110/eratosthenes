@@ -2,8 +2,6 @@
 Mathematics library written in pure Rust.
 
 This library is inspired while solving projecteuler.net problems. You may find the functions of this library useful for those problems.
-
-Note that this library mostly works with `usize` integers, tested on 64 bit systems, and most of the functions return whether a `usize` or `Vec<usize>`
 */
 
 pub struct ERAMath<T> {
@@ -30,7 +28,6 @@ impl ERABool {
 
 impl PartialEq for ERABool {
     fn eq(&self, other: &Self) -> bool {
-        // Compare both result and duration for equality
         self.result == other.result && self.duration == other.duration
     }
 }
@@ -41,6 +38,7 @@ pub mod general;
 pub use general::*;
 
 pub mod trigonometry;
+pub use trigonometry::*;
 
-pub mod primes;
-pub use primes::*;
+pub mod prime;
+pub use prime::*;

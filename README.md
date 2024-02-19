@@ -1,19 +1,16 @@
 # Eratosthenes
 
-Eratosthenes is a mathematics library written in Rust. It provides various mathematical operations, series and sequences commonly used in solving mathematical problems, particularly those found on [Project Euler](https://projecteuler.net/). This library is designed to be simple, efficient, and easy to use.
+Eratosthenes is a mathematics library written in Rust. It provides various mathematical operations, series and sequences commonly used in solving mathematical problems, particularly those found on [Project Euler](https://projecteuler.net/).
 
 Please note that this library is in its early stages and missing important features. It is evolving with time.
 
 ## Features
 
-- TO DO
+- TODO
 
 ### Functions
 
-- eratosthenes::is_valid_triangle()
-- eratosthenes::reduce_decimal_digits()
-- eratosthenes::primes()
-- eratosthenes::nth_prime()
+- TODO
 
 ## Usage
 
@@ -31,4 +28,4 @@ eratosthenes = { path = "../path/to/eratosthenes" }
 
 After months of discontinuity for the project, the main structure of the project is reorganized and many things are changed.
 
-The code is organized in a way that a project that uses eratosthenes 0.1.1 or 0.2.0 version would not work with version 0.3.0 and above.
+0.3.0 version creates a new structure for the project.
