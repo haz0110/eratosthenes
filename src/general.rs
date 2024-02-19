@@ -35,19 +35,20 @@ impl ERAGeneralTrait for ERAGeneral {
             
         let start_time = std::time::Instant::now();
 
-        let decimal_digits = if number.fract() == 0.0 {
-            0
-        } else {
-            let mut multiplier: f64 = 1.0;
-            while (number * multiplier).fract() != 0.0 {
-                multiplier *= 10.0;
-            }
-            multiplier.to_string().len()
-        };
+        println!("number.fract() is: {}, number is: {}", number.fract(), number);
+
+        if let Some(decimal_point_index) = number.to_string().chars().position(|c| c == '.') {
+            let decimal_digits = number.to_string().len() - (decimal_point_index + 1);
+            let duration = start_time.elapsed();
+            println!("returns inside if let statement.");
+            return ERAMath::new(Ok(decimal_digits), duration);
+        }
+
+        println!("passed if let statement");
     
-        let duration = start_time.elapsed();
-    
-        ERAMath::new(Ok(decimal_digits), duration)
+        let duration: std::time::Duration = start_time.elapsed();
+        println!("returns at the end");
+        ERAMath::new(Ok(0), duration)
     }
 
     fn reduce_decimal_digits(value: f64, decimal_places: usize) -> ERAMath<f64> {
