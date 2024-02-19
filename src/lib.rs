@@ -26,6 +26,17 @@ impl ERABool {
     }
 }
 
+pub struct ERAString {
+    pub result: Result<String, String>,
+    pub duration: std::time::Duration,
+}
+
+impl ERAString {
+    pub fn new(result: Result<String, String>, duration: std::time::Duration) -> Self {
+        ERAString { result, duration }
+    }
+}
+
 impl PartialEq for ERABool {
     fn eq(&self, other: &Self) -> bool {
         self.result == other.result && self.duration == other.duration

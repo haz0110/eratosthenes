@@ -1,12 +1,12 @@
 #[cfg(test)]
 mod tests {
 
-    use eratosthenes::{ERAPrimes, ERAPrimesTrait};
+    use eratosthenes::{ERAPrime, ERAPrimeTrait};
 
     #[test]
     fn primes_test1() {
         assert_eq!(
-            ERAPrimes::primes(1_050).result.unwrap(),
+            ERAPrime::primes(1_050).result.unwrap(),
             vec![
                 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79,
                 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
@@ -25,19 +25,19 @@ mod tests {
 
     #[test]
     fn nth_prime_test() {
-        assert_eq!(ERAPrimes::nth_prime(1).result.unwrap(), 2);
-        assert_eq!(ERAPrimes::nth_prime(2).result.unwrap(), 3);
-        assert_eq!(ERAPrimes::nth_prime(10).result.unwrap(), 29);
-        assert_eq!(ERAPrimes::nth_prime(1000).result.unwrap(), 7_919);
-        // assert_eq!(ERAPrimes::nth_prime(31_240_412).result.unwrap(), 598_294_381);
+        assert_eq!(ERAPrime::nth_prime(1).result.unwrap(), 2);
+        assert_eq!(ERAPrime::nth_prime(2).result.unwrap(), 3);
+        assert_eq!(ERAPrime::nth_prime(10).result.unwrap(), 29);
+        assert_eq!(ERAPrime::nth_prime(1000).result.unwrap(), 7_919);
+        // assert_eq!(ERAPrime::nth_prime(31_240_412).result.unwrap(), 598_294_381);
     }
 
     #[test]
     fn is_prime_test() {
-        assert!(!ERAPrimes::is_prime(1).result.unwrap());
-        assert!(ERAPrimes::is_prime(13).result.unwrap());
-        assert!(ERAPrimes::is_prime(2).result.unwrap());
-        assert!(ERAPrimes::is_prime(7_741).result.unwrap());
-        assert!(ERAPrimes::is_prime(612_271_815_315_483_857).result.unwrap());
+        assert!(!ERAPrime::is_prime(1).result.unwrap());
+        assert!(ERAPrime::is_prime(13).result.unwrap());
+        assert!(ERAPrime::is_prime(2).result.unwrap());
+        assert!(ERAPrime::is_prime(7_741).result.unwrap());
+        assert!(ERAPrime::is_prime(612_271_815_315_483_857).result.unwrap());
     }
 }

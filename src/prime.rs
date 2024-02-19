@@ -1,13 +1,13 @@
 use crate::{ERABool, ERAMath};
 
-pub trait ERAPrimesTrait {
+pub trait ERAPrimeTrait {
     fn primes(until: usize) -> ERAMath<Vec<usize>>;
     fn nth_prime(nth: usize) -> ERAMath<usize>;
     fn is_prime(number: usize) -> ERABool;
 }
-pub struct ERAPrimes;
+pub struct ERAPrime;
 
-impl ERAPrimesTrait for ERAPrimes {
+impl ERAPrimeTrait for ERAPrime {
     fn primes(until: usize) -> ERAMath<Vec<usize>> {
         let start_time = std::time::Instant::now();
 
@@ -62,7 +62,7 @@ impl ERAPrimesTrait for ERAPrimes {
             return ERAMath::new(Ok(3), duration);
         }
 
-        let primes = crate::ERAPrimes::primes(((nth as f64 * (nth as f64).ln()) * 2.0) as usize);
+        let primes = crate::ERAPrime::primes(((nth as f64 * (nth as f64).ln()) * 2.0) as usize);
 
         let calculation = primes.result.unwrap()[nth - 1];
         let duration = start_time.elapsed();
