@@ -5,6 +5,7 @@ pub trait ERAGeneralTrait {
     fn number_of_decimal_digits(number: f64) -> ERAMath<usize>;
     fn reduce_decimal_digits(value: f64, decimal_places: usize) -> ERAMath<f64>;
     fn arithmetic_sequence(start: usize, end: usize, ratio: usize) -> ERAMath<Vec<usize>>;
+    fn multiples_of(start: usize, end: usize, multiplier: usize) -> ERAMath<Vec<usize>>;
 }
 pub struct ERAGeneral;
 
@@ -105,5 +106,30 @@ impl ERAGeneralTrait for ERAGeneral {
         let duration = start_time.elapsed();
 
         ERAMath::new(Ok(calculation), duration)
+    }
+
+    fn multiples_of(start: usize, end: usize, multiplier: usize) -> ERAMath<Vec<usize>> {
+            
+            let start_time = std::time::Instant::now();
+    
+            if start > end {
+                let err_message = "Err: start cannot be greater than end.".to_string();
+                let duration = start_time.elapsed();
+                return ERAMath::new(Err(err_message), duration);
+            }
+    
+            let mut calculation: Vec<usize> = Vec::new();
+    
+            if multiplier != 0 {
+                let mut current = start;
+                while current < end {
+                    calculation.push(current);
+                    current += multiplier;
+                }
+            }
+    
+            let duration = start_time.elapsed();
+    
+            ERAMath::new(Ok(calculation), duration)
     }
 }
