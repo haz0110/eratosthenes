@@ -28,13 +28,19 @@ impl ERABool {
     }
 }
 
+impl PartialEq for ERABool {
+    fn eq(&self, other: &Self) -> bool {
+        // Compare both result and duration for equality
+        self.result == other.result && self.duration == other.duration
+    }
+}
+
+impl Eq for ERABool {}
+
 pub mod general;
-pub use general::ERAGeneralTrait;
-pub use general::ERAGeneral;
+pub use general::*;
 
 pub mod trigonometry;
-pub use trigonometry::ERATrigonometryTrait;
-pub use trigonometry::ERATrigonometry;
 
 pub mod primes;
-pub use primes::{primes, nth_prime, is_prime};
+pub use primes::*;

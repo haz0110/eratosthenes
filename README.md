@@ -11,7 +11,7 @@ Please note that this library is in its early stages and missing important featu
 ### Functions
 
 - eratosthenes::is_valid_triangle()
-- eratosthenes::reduce_decimals()
+- eratosthenes::reduce_decimal_digits()
 - eratosthenes::primes()
 - eratosthenes::nth_prime()
 

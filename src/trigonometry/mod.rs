@@ -14,8 +14,8 @@ impl ERATrigonometryTrait for ERATrigonometry {
         
         if a < 0.0 || b < 0.0 || gamma < 0.0 {
             let duration = start_time.elapsed();
-            let error_message = "Input values cannot be negative.".to_string();
-            return ERAMath::new(Err(error_message), duration);
+            let err_message = "Input values cannot be negative.".to_string();
+            return ERAMath::new(Err(err_message), duration);
         }
 
         let c_squared = a.powi(2) + b.powi(2) - 2.0 * a * b * gamma.cos();
@@ -29,8 +29,8 @@ impl ERATrigonometryTrait for ERATrigonometry {
             }
             _ => {
                 let duration = start_time.elapsed();
-                let error_message = "The input values do not form a valid triangle.".to_string();
-                ERAMath::new(Err(error_message), duration)
+                let err_message = "The input values do not form a valid triangle.".to_string();
+                ERAMath::new(Err(err_message), duration)
             }
         }
     }
