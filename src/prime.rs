@@ -10,11 +10,12 @@ pub struct ERAPrime;
 impl ERAPrimeTrait for ERAPrime {
     fn primes(until: usize) -> ERAMath<Vec<usize>> {
         let start_time = std::time::Instant::now();
+        let analysis = "placeholder".to_string();
 
         if until < 2 {
             let err_message = "Err: there are no prime numbers under 2.".to_string();
             let duration = start_time.elapsed();
-            return ERAMath::new(Err(err_message), duration);
+            return ERAMath::new(Err(err_message), duration, analysis);
         };
 
         let mut sieve: Vec<bool> = vec![true; until as usize + 1];
@@ -42,24 +43,25 @@ impl ERAPrimeTrait for ERAPrime {
 
         let duration = start_time.elapsed();
 
-        ERAMath::new(Ok(calculation), duration)
+        ERAMath::new(Ok(calculation), duration, analysis)
     }
     fn nth_prime(nth: usize) -> ERAMath<usize> {
         let start_time = std::time::Instant::now();
+        let analysis = "placeholder".to_string();
 
         // exception cases
         if nth == 0 {
             let err_message = "Err: There is no 0th prime number.".to_string();
             let duration = start_time.elapsed();
-            return ERAMath::new(Err(err_message), duration);
+            return ERAMath::new(Err(err_message), duration, analysis);
         }
         if nth == 1 {
             let duration = start_time.elapsed();
-            return ERAMath::new(Ok(2), duration);
+            return ERAMath::new(Ok(2), duration, analysis);
         }
         if nth == 2 {
             let duration = start_time.elapsed();
-            return ERAMath::new(Ok(3), duration);
+            return ERAMath::new(Ok(3), duration, analysis);
         }
 
         let primes = crate::ERAPrime::primes(((nth as f64 * (nth as f64).ln()) * 2.0) as usize);
@@ -67,20 +69,21 @@ impl ERAPrimeTrait for ERAPrime {
         let calculation = primes.result.unwrap()[nth - 1];
         let duration = start_time.elapsed();
 
-        ERAMath::new(Ok(calculation), duration)
+        ERAMath::new(Ok(calculation), duration, analysis)
     }
 
     fn is_prime(number: usize) -> ERABool {
         let start_time = std::time::Instant::now();
+        let analysis = "placeholder".to_string();
 
         if number == 2 {
             let duration = start_time.elapsed();
-            return ERABool::new(Ok(true), duration);
+            return ERABool::new(Ok(true), duration, analysis);
         }
 
         if number < 2 || number % 2 == 0 || number % 3 == 0 {
             let duration = start_time.elapsed();
-            return ERABool::new(Ok(false), duration);
+            return ERABool::new(Ok(false), duration, analysis);
         }
 
         let sqrt = (number as f64).sqrt() as usize;
@@ -89,12 +92,12 @@ impl ERAPrimeTrait for ERAPrime {
         while index <= sqrt {
             if number % index == 0 || number % (index + 2) == 0 {
                 let duration = start_time.elapsed();
-                return ERABool::new(Ok(false), duration);
+                return ERABool::new(Ok(false), duration, analysis);
             }
             index += 6;
         }
 
         let duration = start_time.elapsed();
-        return ERABool::new(Ok(true), duration);
+        return ERABool::new(Ok(true), duration, analysis);
     }
 }

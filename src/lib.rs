@@ -1,49 +1,44 @@
 /*!
-Mathematics library written in pure Rust.
+Mathematics library written in Rust.
 
-This library is inspired while solving projecteuler.net problems. You may find the functions of this library useful for those problems.
+This library is inspired while solving projecteuler.net problems.
 */
 
 pub struct ERAMath<T> {
     pub result: Result<T, String>,
     pub duration: std::time::Duration,
+    pub analysis: String,
 }
 
 impl<T> ERAMath<T> {
-    pub fn new(result: Result<T, String>, duration: std::time::Duration) -> Self {
-        ERAMath { result, duration }
+    pub fn new(result: Result<T, String>, duration: std::time::Duration, analysis: String) -> Self {
+        ERAMath { result, duration, analysis }
     }
 }
 
 pub struct ERABool {
     pub result: Result<bool, String>,
     pub duration: std::time::Duration,
+    pub analysis: String,
 }
 
 impl ERABool {
-    pub fn new(result: Result<bool, String>, duration: std::time::Duration) -> Self {
-        ERABool { result, duration }
+    pub fn new(result: Result<bool, String>, duration: std::time::Duration, analysis: String) -> Self {
+        ERABool { result, duration, analysis }
     }
 }
 
 pub struct ERAString {
     pub result: Result<String, String>,
     pub duration: std::time::Duration,
+    pub analysis: String,
 }
 
 impl ERAString {
-    pub fn new(result: Result<String, String>, duration: std::time::Duration) -> Self {
-        ERAString { result, duration }
+    pub fn new(result: Result<String, String>, duration: std::time::Duration, analysis: String) -> Self {
+        ERAString { result, duration, analysis }
     }
 }
-
-impl PartialEq for ERABool {
-    fn eq(&self, other: &Self) -> bool {
-        self.result == other.result && self.duration == other.duration
-    }
-}
-
-impl Eq for ERABool {}
 
 pub mod general;
 pub use general::*;

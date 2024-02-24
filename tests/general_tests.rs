@@ -130,6 +130,14 @@ mod tests {
     }
 
     #[test]
+    fn test_sum1() {
+        let calculation = ERAGeneral::sum(vec![10, 11, 34]);
+        assert!(calculation.result.is_ok());
+        assert_eq!(calculation.analysis, "Here is the array that is asked to sum all elements: [10, 11, 34]");
+        assert_eq!(calculation.result.unwrap(), 55);
+    }
+
+    #[test]
     fn arithmetic_sequence1() {
         let calculation = ERAGeneral::arithmetic_sequence(3, 10, 2);
         assert!(calculation.result.is_ok());
@@ -138,8 +146,15 @@ mod tests {
 
     #[test]
     fn multiples_of1() {
+        let calculation = ERAGeneral::multiples_of(3, 10, 3);
+        assert!(calculation.result.is_ok());
+        assert_eq!(calculation.result.unwrap(), vec![3, 6, 9]);
+    }
+
+    #[test]
+    fn multiples_of2() {
         let calculation = ERAGeneral::multiples_of(3, 10, 2);
         assert!(calculation.result.is_ok());
-        assert_eq!(calculation.result.unwrap(), vec![3, 5, 7, 9]);
+        assert_eq!(calculation.result.unwrap(), vec![4, 6, 8, 10]);
     }
 }
