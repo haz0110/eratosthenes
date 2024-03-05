@@ -4,7 +4,7 @@ mod tests {
     use eratosthenes::{ERAPrime, ERAPrimeTrait};
 
     #[test]
-    fn primes_test1() {
+    fn primes_test() {
         assert_eq!(
             ERAPrime::primes(1_050).result.unwrap(),
             vec![
